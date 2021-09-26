@@ -14,18 +14,14 @@ inputs:
     description: 'Protocol used to deploy (ftp or sftp)'
     required: false
     default: "ftp"
-  port:
-    description: 'The port used to connect to the server'
-    required: false
-    default: "21"
   local_dir:
     description: 'The local folder to copy, defaults to root project folder'
     required: false
-    default: ""
+    default: "."
   remote_dir:
     description: 'The remote folder to copy to, deafults to root FTP folder'
     required: false
-    default: ""
+    default: "."
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -34,7 +30,6 @@ runs:
     - ${{ inputs.username }}
     - ${{ inputs.password }}
     - ${{ inputs.method }}
-    - ${{ inputs.port }}
     - ${{ inputs.local_dir }}
     - ${{ inputs.remote_dir }}
 branding:

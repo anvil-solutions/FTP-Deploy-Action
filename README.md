@@ -41,6 +41,5 @@ I recommend you store your FTP_PASSWORD as a secret.
 | `username`     | Yes       | git-action@samkirkland.com | N/A             | FTP username                |
 | `password`     | Yes       | CrazyUniquePassword&%123   | N/A             | FTP password                |
 | `method`       | No        | sftp                       | ftp             | Protocol used (ftp or sftp) |
-| `port`         | No        | 22                         | ftp=21, sftp=22 | The port used               |
 | `local_dir`    | No        | ./build                    | .               | The local folder to copy, defaults to root project folder. |
 | `remote_dir`   | No        | ./serverFolder             | .               | The remote folder to copy to, deafults to root FTP folder. |
