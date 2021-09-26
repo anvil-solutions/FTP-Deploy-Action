@@ -6,7 +6,7 @@ set -eu
 if [ $4 = "sftp" ]; then
   PORT="22"
   echo "Establishing SFTP connection..."
-  sshpass -p $3 sftp -o StrictHostKeyChecking=no -P $WDEFAULT_PORT $2@$1
+  sshpass -p $3 sftp -o StrictHostKeyChecking=no -P $PORT $2@$1
   echo "Connection established"
 else
   PORT="21"
