@@ -5,24 +5,23 @@ set -eu
 
 echo "Starting FTP Deploy"
 
-WDEFAULT_LOCAL_DIR=${LOCAL_DIR:-"."}
-WDEFAULT_REMOTE_DIR=${REMOTE_DIR:-"."}
-WDEFAULT_ARGS=${ARGS:-""}
-WDEFAULT_METHOD=${METHOD:-"ftp"}
+WDEFAULT_LOCAL_DIR=${6:-"."}
+WDEFAULT_REMOTE_DIR=${7:-"."}
+WDEFAULT_METHOD=${4:-"ftp"}
 
 if [ $WDEFAULT_METHOD = "sftp" ]; then
-  WDEFAULT_PORT=${PORT:-"22"}
+  WDEFAULT_PORT=${5:-"22"}
   echo "Establishing SFTP connection..."
   sshpass -p $FTP_PASSWORD sftp -o StrictHostKeyChecking=no -P $WDEFAULT_PORT $FTP_USERNAME@$FTP_SERVER
   echo "Connection established"
 else
-  WDEFAULT_PORT=${PORT:-"21"}
+  WDEFAULT_PORT=${5:-"21"}
 fi;
 
 echo "Using $WDEFAULT_METHOD to connect to port $WDEFAULT_PORT"
 
 echo "Uploading files..."
-lftp $WDEFAULT_METHOD://$FTP_SERVER:$WDEFAULT_PORT -u $FTP_USERNAME,$FTP_PASSWORD -e "set ftp:ssl-allow no; mirror $WDEFAULT_ARGS -R $WDEFAULT_LOCAL_DIR $WDEFAULT_REMOTE_DIR; quit"
+lftp $WDEFAULT_METHOD://$1:$WDEFAULT_PORT -u $2,$3 -e "set ftp:ssl-allow no; mirror -R -P 10 -e $WDEFAULT_LOCAL_DIR $WDEFAULT_REMOTE_DIR; quit"
 
 echo "FTP Deploy Complete"
 exit 0

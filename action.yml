@@ -1,13 +1,13 @@
-name: 'FTP Deploy'
+name: 'Fast FTP'
 description: 'Syncs files via FTP/SFTP to a remote server'
 inputs:
-  ftp_server:
+  server:
     description: 'FTP server name (you may need to specify a port)'
     required: true
-  ftp_username:
+  username:
     description: 'FTP account username'
     required: true
-  ftp_password:
+  password:
     description: 'FTP account password'
     required: true
   method:
@@ -15,7 +15,7 @@ inputs:
     required: false
     default: "ftp"
   port:
-    description: 'The port used to connect to server'
+    description: 'The port used to connect to the server'
     required: false
     default: "21"
   local_dir:
@@ -23,24 +23,20 @@ inputs:
     required: false
     default: ""
   remote_dir:
-    description: 'The remote folder to copy to, deafults to root FTP folder (I recommend you configure this on your server side instead of here)'
-    required: false
-    default: ""
-  ARGS:
-    description: 'Passes through options into lftp'
+    description: 'The remote folder to copy to, deafults to root FTP folder'
     required: false
     default: ""
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.ftp_server }}
-    - ${{ inputs.ftp_username }}
-    - ${{ inputs.ftp_password }}
+    - ${{ inputs.server }}
+    - ${{ inputs.username }}
+    - ${{ inputs.password }}
     - ${{ inputs.method }}
     - ${{ inputs.port }}
     - ${{ inputs.local_dir }}
     - ${{ inputs.remote_dir }}
 branding:
-  icon: 'upload-cloud'  
-  color: 'orange'
+  icon: 'upload-cloud'
+  color: 'blue'
