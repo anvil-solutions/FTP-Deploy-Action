@@ -20,6 +20,7 @@ jobs:
       uses: anvil-solutions/Fast-FTP-Action@2.1.0
       with:
         server: ftp.samkirkland.com
+		port: 2222
         username: myFtpUserName
         password: ${{ secrets.FTP_PASSWORD }}
 ```
@@ -43,3 +44,4 @@ I recommend you store your FTP_PASSWORD as a secret.
 | `method`       | No        | sftp                       | ftp             | Protocol used (ftp or sftp) |
 | `local_dir`    | No        | ./build                    | .               | The local folder to copy, defaults to root project folder. |
 | `remote_dir`   | No        | ./serverFolder             | .               | The remote folder to copy to, deafults to root FTP folder. |
+| `port`         | No        | 2222                       | 22              | The remote port.            |

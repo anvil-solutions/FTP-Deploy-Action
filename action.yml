@@ -22,6 +22,10 @@ inputs:
     description: 'The remote folder to copy to, deafults to root FTP folder'
     required: false
     default: "."
+  port:
+    description: "Remote port"
+    required: false
+    default: 22
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -32,6 +36,7 @@ runs:
     - ${{ inputs.method }}
     - ${{ inputs.local_dir }}
     - ${{ inputs.remote_dir }}
+    - ${{ inputs.port }}
 branding:
   icon: 'upload-cloud'
   color: 'blue'
