@@ -20,7 +20,7 @@ jobs:
       uses: anvil-solutions/Fast-FTP-Action@2.1.0
       with:
         server: ftp.samkirkland.com
-		port: 2222
+	port: 2222
         username: myFtpUserName
         password: ${{ secrets.FTP_PASSWORD }}
 ```
